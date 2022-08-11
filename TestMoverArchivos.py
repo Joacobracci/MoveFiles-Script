@@ -5,15 +5,15 @@ import json
 
 f = open ("config.json", "r")
 
-paths = json.loads(f.read())
+config = json.loads(f.read())
 
-dir_list = os.listdir(paths["start"])
+dir_list = os.listdir(config["start"])
 
 count = 0
 for file in dir_list:
-    if count == 50 :
+    if count == int(config["lote"]) :
         break
     else:
-        relativePath = paths["start"]+"/"+ file
-        shutil.move(relativePath, paths["finalPath"])
+        relativePath = config["start"]+"/"+ file
+        shutil.move(relativePath, config["finalPath"])
         count = count +1 
